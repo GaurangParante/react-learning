@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Navbar({ title = "Title", aboutText = "About" }) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {title}
@@ -38,7 +38,7 @@ export default function Navbar({ title = "Title", aboutText = "About" }) {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-primary" type="submit">
               Search
             </button>
           </form>
