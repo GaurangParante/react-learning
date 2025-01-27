@@ -1,8 +1,13 @@
-import React from 'react'
+import React from "react";
 
-export default function Navbar({ title = "Title", aboutText = "About" }) {
+export default function Navbar({
+  title = "Title",
+  aboutText = "About",
+  mode,
+  toggleMode,
+}) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {title}
@@ -31,7 +36,7 @@ export default function Navbar({ title = "Title", aboutText = "About" }) {
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          {/* <form className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
@@ -41,7 +46,25 @@ export default function Navbar({ title = "Title", aboutText = "About" }) {
             <button className="btn btn-primary" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
+          <div
+            className={`form-check form-switch text-${
+              mode === "light" ? "dark" : "light"
+            }`}
+          >
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              onChange={toggleMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Enable Darkmode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
