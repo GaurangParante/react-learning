@@ -1,33 +1,38 @@
 import React, { useState } from "react";
 
-export default function TextForm({ heading, mode }) {
+export default function TextForm({ heading, mode, showAlert }) {
   const handleUPClick = () => {
     // console.log("Upper case was clicked" + text);
     const newText = text.toUpperCase();
     setText(newText);
+    showAlert("Converted To Uppercase", "success");
   };
 
   const handleLoClick = () => {
     // console.log("Upper case was clicked" + text);
     const newText = text.toLowerCase();
     setText(newText);
+    showAlert("Converted To Lowercase", "success");
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
   const handleClear = () => {
     setText("");
+    showAlert("Text Cleared", "success");
   };
 
   const handleCopy = () => {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    showAlert("Text Coppied", "success");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    showAlert("Extra space removed", "success");
   };
 
   const [text, setText] = useState("");
