@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-import About from "./components/About";
+// import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -40,29 +40,29 @@ function App() {
   };
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar title={"Gaurang"} mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container my-3">
-          <Routes>
+          {/* <Routes> */}
             {/* use exact due to
                 /users --> componant
                 /users/home --> componant 2 */}
-            <Route
+            {/* <Route
               exact
               path="/"
-              element={
+              element={ */}
                 <TextForm
                   heading="Enter the text to analyze below"
                   mode={mode}
                   showAlert={showAlert}
                 />
-              }
-            />
-            <Route exact path="/about" element={<About />} />
-          </Routes>
+              {/* }
+            /> */}
+            {/* <Route exact path="/about" element={<About />} />
+          </Routes> */}
         </div>
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
