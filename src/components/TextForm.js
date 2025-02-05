@@ -27,6 +27,7 @@ export default function TextForm({ heading, mode, showAlert }) {
     text.select();
     navigator.clipboard.writeText(text.value);
     showAlert("Text Coppied", "success");
+    document.getSelection().removeAllRanges();
   };
 
   const handleExtraSpaces = () => {
@@ -44,7 +45,7 @@ export default function TextForm({ heading, mode, showAlert }) {
         className="container"
         style={{ color: mode === "dark" ? "white" : "black" }}
       >
-        <h1>{heading}</h1>
+        <h1 className="mb-2">{heading}</h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -53,24 +54,44 @@ export default function TextForm({ heading, mode, showAlert }) {
             id="myBox"
             rows="8"
             style={{
-              backgroundColor: mode === "dark" ? "grey" : "white",
+              backgroundColor: mode === "dark" ? "#13466e" : "white",
               color: mode === "dark" ? "white" : "black",
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUPClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleUPClick}
+        >
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleLoClick}
+        >
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleCopy}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleCopy}
+        >
           Copy text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleClear}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleClear}
+        >
           Clear text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleExtraSpaces}
+        >
           Remove Extra Spaces
         </button>
       </div>
@@ -80,11 +101,22 @@ export default function TextForm({ heading, mode, showAlert }) {
       >
         <h2>Your Text summery</h2>
         <p>
-          {text.split(" ").length} words and {text.length} characters{" "}
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters{" "}
         </p>
-        <p>{0.008 * text.split(" ").length} Minits for read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          Minits for read
+        </p>
         <h2>Preview</h2>
-        <p>{text.length > 0 ? text : "Enter something to preview"}</p>
+        <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
       </div>
     </>
   );
