@@ -2,14 +2,12 @@ import React, { useState } from "react";
 
 export default function TextForm({ heading, mode, showAlert }) {
   const handleUPClick = () => {
-    // console.log("Upper case was clicked" + text);
     const newText = text.toUpperCase();
     setText(newText);
     showAlert("Converted To Uppercase", "success");
   };
 
   const handleLoClick = () => {
-    // console.log("Upper case was clicked" + text);
     const newText = text.toLowerCase();
     setText(newText);
     showAlert("Converted To Lowercase", "success");
@@ -23,11 +21,8 @@ export default function TextForm({ heading, mode, showAlert }) {
   };
 
   const handleCopy = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
     showAlert("Text Coppied", "success");
-    document.getSelection().removeAllRanges();
   };
 
   const handleExtraSpaces = () => {
@@ -102,7 +97,7 @@ export default function TextForm({ heading, mode, showAlert }) {
         <h2>Your Text summery</h2>
         <p>
           {
-            text.split(" ").filter((element) => {
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }{" "}
